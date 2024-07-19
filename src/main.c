@@ -18,6 +18,15 @@ void fill_matrix_random(double **matrix, int x, int y) {
     }
 }
 
+void print_matrix(double **matrix, int x, int y) {
+    for (int i = 0; i < x; ++i) {
+        for (int j = 0; j < y; ++j) {
+            printf("%f ", matrix[i][j]);
+        }
+        printf("\n");
+    }
+}
+
 double **create_empty_matrix(int x, int y) {
     double **matrix = calloc(x, sizeof(double *));
     for (int i = 0; i < x; ++i) {
@@ -64,7 +73,21 @@ int main() {
     }
     fill_matrix_random(matrix, 5, 4);
 
-    struct NeuralNetwork *nn = create_neural_network();
+    double Xsource[4][3] = {{0, 0, 1}, {0, 1, 1}, {1, 0, 1}, {1, 1, 1}};
+    double *X[3];
+    for (int i = 0; i < 4; ++i) {
+        X[i] = Xsource[i];
+    }
+    print_matrix(X, 4, 3);
+
+    double ysource[4][1] = {{0}, {1}, {1}, {0}};
+    double *y[1];
+    for (int i = 0; i < 4; ++i) {
+        y[i] = ysource[i];
+    }
+    print_matrix(y, 4, 1);
+
+    struct NeuralNetwork *nn = create_neural_network(X, y, 4, 3, 4, 1);
 
     return 0;
 }
