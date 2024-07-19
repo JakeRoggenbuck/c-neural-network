@@ -35,14 +35,20 @@ struct NeuralNetwork {
     double **output;
 };
 
-struct NeuralNetwork *create_neural_network() {
+struct NeuralNetwork *create_neural_network(double **x, double **y, int xw,
+                                            int xh, int yw, int yh) {
     struct NeuralNetwork *nn = malloc(sizeof(struct NeuralNetwork));
 
-    nn->weights1 = create_empty_matrix(3, 4);
-    fill_matrix_random(nn->weights1, 3, 4);
+    nn->input = x;
+
+    nn->weights1 = create_empty_matrix(xw, 4);
+    fill_matrix_random(nn->weights1, xw, 4);
 
     nn->weights2 = create_empty_matrix(4, 1);
     fill_matrix_random(nn->weights2, 4, 1);
+
+    nn->y = y;
+    nn->output = create_empty_matrix(yw, yh);
 
     return nn;
 }
