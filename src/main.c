@@ -9,6 +9,7 @@ double dsigmoid(double x) { return x * (1.0 - x); }
 double random_double() { return (rand() / (RAND_MAX / 1.0)); }
 
 void fill_matrix_random(double **matrix, int x, int y) {
+	printf("Fill matrix randomly:\n");
     for (int i = 0; i < x; ++i) {
         for (int j = 0; j < y; ++j) {
             matrix[i][j] = random_double();
@@ -16,6 +17,7 @@ void fill_matrix_random(double **matrix, int x, int y) {
         }
         printf("\n");
     }
+	printf("\n");
 }
 
 void print_matrix(double **matrix, int x, int y) {
@@ -78,14 +80,18 @@ int main() {
     for (int i = 0; i < 4; ++i) {
         X[i] = Xsource[i];
     }
+	printf("X matrix:\n");
     print_matrix(X, 4, 3);
+	printf("\n");
 
     double ysource[4][1] = {{0}, {1}, {1}, {0}};
     double *y[1];
     for (int i = 0; i < 4; ++i) {
         y[i] = ysource[i];
     }
+	printf("y matrix:\n");
     print_matrix(y, 4, 1);
+	printf("\n");
 
     struct NeuralNetwork *nn = create_neural_network(X, y, 4, 3, 4, 1);
 
